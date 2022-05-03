@@ -154,10 +154,14 @@ class CYGON_OT_cygon_pack_objects(bpy.types.Operator):
         return {"FINISHED"}
 
 
+def menu_draw(self,context):
+    self.layout.operator("cygon.pack_objects")
 
 def register():
     bpy.utils.register_class(CYGON_OT_cygon_pack_objects)
+    bpy.types.VIEW3D_MT_transform_object.append(menu_draw)
 
 def unregister():
+    bpy.types.VIEW3D_MT_transform_object.remove(menu_draw)
     bpy.utils.unregister_class(CYGON_OT_cygon_pack_objects)
 
